@@ -12,7 +12,9 @@
     "new": "plop",
     "svgo": "svgo -f src/icons/svg --config=src/icons/svgo.yml",
     "test:unit": "jest --clearCache && vue-cli-service test:unit",
-    "test:ci": "npm run lint && npm run test:unit"
+    "test:ci": "npm run lint && npm run test:unit",
+    "deploy": "gh-pages -d build",
+    "predeploy": "npm run build:prod"
   },
   "dependencies": {
     "axios": "0.18.1",
@@ -25,6 +27,7 @@
     "element-ui": "2.13.2",
     "file-saver": "2.0.1",
     "fuse.js": "3.4.4",
+    "gh-pages": "^3.1.0",
     "js-cookie": "2.2.0",
     "jsonlint": "1.6.3",
     "jszip": "3.2.1",
@@ -107,5 +110,6 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/PanJiaChen/vue-element-admin.git"
-  }
+  },
+  "homepage": "https://guojiangliang.github.io/custom"
 }

@@ -138,6 +138,7 @@ const mutations = {
   // 删除元素
   // 删除选中元素的前面、后面和自身元素，如果删除选中元素后面的元素，下标不变
   DELETE_ELEMENT(state, index) {
+    console.log(index)
     if (index < state.active) {
       // 选中元素前面的
       state.active = state.active - 1 // 高亮元素减1
@@ -153,15 +154,15 @@ const mutations = {
     // 删除最后一个元素
     state.pages.splice(index, 1)
     // 更新编辑元素,-1为页面设置
-    if (state.active === -1) {
+    if (state.active >= 0) {
+      state.editElement = deepClone(state.pages[state.active])
+      state.editElement.index = state.active
+    } else if (state.active === -1) {
+      // 回到页面设置
       state.editElement = {
         type: 'setting',
         index: -1
       }
-    } else {
-      // 页面设置
-      state.editElement = deepClone(state.pages[state.active])
-      state.editElement.index = state.active
     }
   }
 }
