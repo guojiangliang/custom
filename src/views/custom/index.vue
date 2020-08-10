@@ -1,34 +1,20 @@
 <template>
   <div class="custom-page">
     <div class="header">
-      <el-button
-        size="mini"
-        type="primary"
-        @click="handleSave"
-      >
+      <el-button size="mini" type="primary" @click="handleSave">
         保存
       </el-button>
-      <el-button
-        size="mini"
-        type="warning"
-      >
+      <el-button size="mini" type="warning">
         预览
       </el-button>
-      <el-button
-        size="mini"
-        type="success"
-      >
+      <el-button size="mini" type="success">
         还原
       </el-button>
     </div>
     <div class="content">
       <!--左侧组件栏-->
       <el-scrollbar class="left-scrollbar">
-        <div
-          v-for="item in menus"
-          :key="item.type"
-          class="left-box"
-        >
+        <div v-for="item in menus" :key="item.type" class="left-box">
           <div class="title">{{ item.categoryName }}</div>
           <draggable
             class="component-list"
@@ -53,12 +39,12 @@
         <div class="page-header">
           <div class="page-title">{{ setting.title }}</div>
         </div>
-        <div
-          class="page"
-          :style="`background:${setting.bg}`"
-        >
+        <div class="page">
           <draggable
             class="page-drag"
+            :style="
+              `background:${setting.bg};padding-left: ${setting.padding}%;padding-right: ${setting.padding}%`
+            "
             v-bind="{ animation: 300 }"
             :list="pages"
             group="comp"
@@ -71,17 +57,11 @@
               :class="active === index ? 'active' : ''"
               @click="onSelect(index)"
             >
-              <div
-                class="del-btn"
-                @click.stop="doDel(index)"
-              >
-                <img
-                  src="../../assets/images/del.png"
-                  alt="删除"
-                >
+              <div class="del-btn" @click.stop="doDel(index)">
+                <img src="../../assets/images/del.png" alt="删除" />
               </div>
               <component
-                :is="formatType(item.type,'Element')"
+                :is="formatType(item.type, 'Element')"
                 :element="item"
               />
             </div>
@@ -98,13 +78,13 @@
             v-for="item in rightMenu"
             :key="item.active"
             :class="active === item.active ? 'active' : ''"
-            @click="goMenu(item.active,item.type)"
+            @click="goMenu(item.active, item.type)"
           >
             {{ item.name }}
           </div>
         </div>
         <component
-          :is="formatType(editElement.type,'Panel')"
+          :is="formatType(editElement.type, 'Panel')"
           v-if="editElement && editElement.type"
           :element="editElement"
         />
@@ -127,15 +107,18 @@ export default {
   data() {
     return {
       len: 0,
-      rightMenu: [{
-        name: '页面设置',
-        active: -1,
-        type: 'setting'
-      }, {
-        name: '组件管理',
-        active: -2,
-        type: 'components'
-      }]
+      rightMenu: [
+        {
+          name: '页面设置',
+          active: -1,
+          type: 'setting'
+        },
+        {
+          name: '组件管理',
+          active: -2,
+          type: 'components'
+        }
+      ]
     }
   },
   computed: {
@@ -147,7 +130,7 @@ export default {
       editElement: state => state.custom.editElement
     })
   },
-  mounted() { },
+  mounted() {},
   created() {
     // 模拟后端数据返回
     // setTimeout(() => {
@@ -168,7 +151,10 @@ export default {
     onEnd(evt) {
       if (this.pages.length > this.len) {
         // 数据变长,添加数据成功
-        this.$store.commit('custom/SET_ACTIVE', { index: evt.newIndex, type: 'new' })
+        this.$store.commit('custom/SET_ACTIVE', {
+          index: evt.newIndex,
+          type: 'new'
+        })
       }
     },
     // 交换元素位置也要更新active
@@ -376,6 +362,9 @@ export default {
       height: calc(100vh - 124px);
       border-left: 1px solid #eee;
       background: #fff;
+      ::v-deep .el-scrollbar__wrap {
+        margin-right: 0 !important;
+      }
       .right-menus {
         position: fixed;
         right: 460px;

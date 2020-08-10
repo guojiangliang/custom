@@ -1,7 +1,7 @@
 <template>
   <div class="setting-panel">
     <panel-header title="页面设置" />
-    <el-form :model="setting">
+    <el-form :model="setting" class="setting-form" label-width="140px">
       <el-form-item label="页面标题">
         <el-input v-model="setting.title" />
       </el-form-item>
@@ -11,6 +11,9 @@
           :predefine="predefineColors"
           show-alpha
         />
+      </el-form-item>
+      <el-form-item label="左右边距(百分比)">
+        <el-slider v-model="setting.padding" :max="30" :step="0.1" show-input />
       </el-form-item>
     </el-form>
   </div>
@@ -46,10 +49,17 @@ export default {
       return this.$store.state.custom.setting
     }
   },
-  mounted() { },
-  created() { },
+  mounted() {},
+  created() {},
   methods: {}
 }
 </script>
-<style lang='scss' scoped>
+<style lang="scss" scoped>
+.setting-panel {
+  .setting-form {
+    width: 420px;
+    margin: 0 auto;
+    padding-top: 15px;
+  }
+}
 </style>

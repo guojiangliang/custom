@@ -4,6 +4,7 @@ import goodsPanel from '../Panel/goodsPanel'
 import goodsListPanel from '../Panel/goodsListPanel'
 import settingPanel from '../Panel/settingPanel'
 import componentsPanel from '../Panel/componentsPanel'
+import hotAreaPanel from '../Panel/hotAreaPanel'
 export default {
   components: {
     titlePanel,
@@ -11,7 +12,8 @@ export default {
     goodsPanel,
     goodsListPanel,
     settingPanel,
-    componentsPanel
+    componentsPanel,
+    hotAreaPanel
   },
   data() {
     return {}

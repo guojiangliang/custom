@@ -9,14 +9,11 @@ import panelHeader from '../common/panelHeader'
 export default {
   components: { panelHeader },
   data() {
-    return {
-
-    }
+    return {}
   },
-  mounted() { },
-  created() { },
+  mounted() {},
+  created() {},
   methods: {}
 }
 </script>
-<style lang='scss' scoped>
-</style>
+<style lang="scss" scoped></style>

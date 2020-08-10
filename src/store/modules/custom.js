@@ -4,7 +4,8 @@ const state = {
   pages: [], // 页面数据
   setting: {
     title: '页面标题', // 页面标题
-    bg: '#f8f8f8' // 页面背景
+    bg: '#f8f8f8', // 页面背景
+    margin: 0
   },
   active: -1, // 选中的组件下标，默认-1为页面设置，-2为组件管理
   editElement: {
@@ -44,7 +45,11 @@ const state = {
         },
         {
           type: 'hotArea',
-          name: '热区图片'
+          name: '热区图片',
+          imgUrl: '',
+          area: [],
+          height: 0,
+          width: 500
         },
         {
           type: 'carousel',

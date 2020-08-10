@@ -13,16 +13,15 @@
 </template>
 
 <script>
-import panelHeader from '../common/panelHeader'
+import mixins from './mixins'
 export default {
-  components: { panelHeader },
+  mixins: [mixins],
   props: {
     element: {
       type: Object,
-      default: () => { }
+      default: () => {}
     }
   }
 }
 </script>
-<style lang='scss' scoped>
-</style>
+<style lang="scss" scoped></style>
